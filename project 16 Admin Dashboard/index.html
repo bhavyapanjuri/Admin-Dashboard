@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <button class="toggle-btn" id="toggleBtn">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span class="nav-text">Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="nav-text">Users</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div class="notification">
+                        <span class="icon">🔔</span>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%234a90e2'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='18' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="User">
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="stats-section" id="dashboardPage">
+                <div class="stat-card" id="card1">
+                    <div class="card-icon">👥</div>
+                    <div class="card-content">
+                        <h3 class="card-value">0</h3>
+                        <p class="card-label">Total Users</p>
+                        <span class="card-trend positive">↑ 12%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="card2">
+                    <div class="card-icon">💰</div>
+                    <div class="card-content">
+                        <h3 class="card-value">$0</h3>
+                        <p class="card-label">Revenue</p>
+                        <span class="card-trend positive">↑ 8%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="card3">
+                    <div class="card-icon">🛒</div>
+                    <div class="card-content">
+                        <h3 class="card-value">0</h3>
+                        <p class="card-label">Sales</p>
+                        <span class="card-trend negative">↓ 3%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="card4">
+                    <div class="card-icon">📊</div>
+                    <div class="card-content">
+                        <h3 class="card-value">0%</h3>
+                        <p class="card-label">Performance</p>
+                        <span class="card-trend positive">↑ 5%</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="charts-section" id="dashboardCharts">
+                <div class="chart-container">
+                    <h3>Performance Trends</h3>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Sales Comparison</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Distribution Analysis</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </section>
+
+            <section class="table-section" id="dashboardTable">
+                <div class="table-header">
+                    <h3>Recent Transactions</h3>
+                    <div class="table-controls">
+                        <input type="text" id="searchTable" placeholder="Filter...">
+                        <select id="sortTable">
+                            <option value="">Sort by</option>
+                            <option value="name">Name</option>
+                            <option value="amount">Amount</option>
+                            <option value="status">Status</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="page-content" id="reportsPage" style="display:none;">
+                <div class="content-card">
+                    <h2>📈 Reports</h2>
+                    <p>Generate and view detailed reports of your business analytics.</p>
+                    <div class="report-list">
+                        <div class="report-item" onclick="viewReport('Monthly Sales')">
+                            <span>📄 Monthly Sales Report</span>
+                            <button class="view-btn">View Report</button>
+                        </div>
+                        <div class="report-item" onclick="viewReport('User Activity')">
+                            <span>📄 User Activity Report</span>
+                            <button class="view-btn">View Report</button>
+                        </div>
+                        <div class="report-item" onclick="viewReport('Revenue Analysis')">
+                            <span>📄 Revenue Analysis Report</span>
+                            <button class="view-btn">View Report</button>
+                        </div>
+                        <div class="report-item" onclick="viewReport('Performance Metrics')">
+                            <span>📄 Performance Metrics Report</span>
+                            <button class="view-btn">View Report</button>
+                        </div>
+                    </div>
+                    <div id="reportViewer" style="display:none; margin-top:30px; padding:20px; background:#f8f9fa; border-radius:8px;">
+                        <h3 id="reportTitle"></h3>
+                        <p id="reportContent"></p>
+                        <button onclick="closeReport()" style="margin-top:15px; padding:10px 20px; background:#4a90e2; color:white; border:none; border-radius:5px; cursor:pointer;">Close</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page-content" id="usersPage" style="display:none;">
+                <div class="content-card">
+                    <h2>👥 Users Management</h2>
+                    <p>Manage all users and their permissions.</p>
+                    <div class="user-list" id="userList">
+                        <div class="user-item">
+                            <span>👤 John Doe - Admin</span>
+                            <button class="edit-btn" onclick="editUser('John Doe')">Edit</button>
+                            <button class="delete-btn" onclick="removeUser(this)">Remove</button>
+                        </div>
+                        <div class="user-item">
+                            <span>👤 Jane Smith - Manager</span>
+                            <button class="edit-btn" onclick="editUser('Jane Smith')">Edit</button>
+                            <button class="delete-btn" onclick="removeUser(this)">Remove</button>
+                        </div>
+                        <div class="user-item">
+                            <span>👤 Bob Johnson - User</span>
+                            <button class="edit-btn" onclick="editUser('Bob Johnson')">Edit</button>
+                            <button class="delete-btn" onclick="removeUser(this)">Remove</button>
+                        </div>
+                        <div class="user-item">
+                            <span>👤 Alice Brown - User</span>
+                            <button class="edit-btn" onclick="editUser('Alice Brown')">Edit</button>
+                            <button class="delete-btn" onclick="removeUser(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page-content" id="settingsPage" style="display:none;">
+                <div class="content-card">
+                    <h2>⚙️ Settings</h2>
+                    <p>Configure your dashboard preferences and system settings.</p>
+                    <div class="settings-list">
+                        <div class="setting-item">
+                            <span>🔔 Notifications</span>
+                            <button class="toggle-btn-setting enabled" onclick="toggleSetting(this)">Enabled</button>
+                        </div>
+                        <div class="setting-item">
+                            <span>🌙 Dark Mode</span>
+                            <button class="toggle-btn-setting disabled" onclick="toggleSetting(this)">Disabled</button>
+                        </div>
+                        <div class="setting-item">
+                            <span>🔒 Two-Factor Auth</span>
+                            <button class="toggle-btn-setting enabled" onclick="toggleSetting(this)">Enabled</button>
+                        </div>
+                        <div class="setting-item">
+                            <span>📧 Email Alerts</span>
+                            <button class="toggle-btn-setting enabled" onclick="toggleSetting(this)">Enabled</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
